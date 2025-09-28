@@ -276,10 +276,12 @@ class AnalyticsService {
   Future<void> logShare({
     required String contentType,
     required String itemId,
+    required String method,
   }) async {
     await _analytics.logShare(
       contentType: contentType,
       itemId: itemId,
+      method: method,
     );
   }
 

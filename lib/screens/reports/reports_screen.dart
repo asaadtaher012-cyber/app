@@ -107,7 +107,8 @@ class _ReportsScreenState extends State<ReportsScreen> {
     
     int presentCount = 0;
     for (var doc in attendanceDocs) {
-      if (doc.data()['status'] == 'present') {
+      final data = doc.data() as Map<String, dynamic>?;
+      if (data != null && data['status'] == 'present') {
         presentCount++;
       }
     }
