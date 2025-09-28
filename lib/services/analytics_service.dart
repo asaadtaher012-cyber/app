@@ -276,7 +276,7 @@ class AnalyticsService {
   Future<void> logShare({
     required String contentType,
     required String itemId,
-    required String method,
+    String method = 'unknown', // Made optional with a default value
   }) async {
     await _analytics.logShare(
       contentType: contentType,
