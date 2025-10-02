@@ -172,14 +172,14 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
         foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Emergency Alert Card
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
@@ -193,13 +193,13 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
               ),
               child: Column(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.emergency,
                     size: 48,
                     color: Colors.white,
                   ),
-                  SizedBox(height: 16),
-                  Text(
+                  const SizedBox(height: 16),
+                  const Text(
                     'تنبيه طوارئ',
                     style: TextStyle(
                       fontSize: 24,
@@ -207,8 +207,8 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 8),
-                  Text(
+                  const SizedBox(height: 8),
+                  const Text(
                     'اضغط هنا لإرسال تنبيه طوارئ فوري',
                     style: TextStyle(
                       fontSize: 14,
@@ -216,7 +216,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: _isLoading ? null : _sendEmergencyAlert,
                     style: ElevatedButton.styleFrom(
@@ -253,10 +253,10 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
               ),
             ),
             
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             
             // Emergency Contacts
-            Text(
+            const Text(
               'أرقام الطوارئ',
               style: TextStyle(
                 fontSize: 18,
@@ -264,7 +264,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                 color: AppTheme.textPrimary,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             
             ..._emergencyContacts.map((contact) {
               return Container(
@@ -309,17 +309,17 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: Icon(Icons.phone),
+                      child: const Icon(Icons.phone),
                     ),
                   ),
                 ),
               );
             }).toList(),
             
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             
             // Safety Tips
-            Text(
+            const Text(
               'نصائح السلامة',
               style: TextStyle(
                 fontSize: 18,
@@ -327,7 +327,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                 color: AppTheme.textPrimary,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             
             _buildSafetyTip(
               'في حالة الطوارئ',
@@ -387,7 +387,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
               size: 20,
             ),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -400,7 +400,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                     color: AppTheme.textPrimary,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   description,
                   style: TextStyle(
