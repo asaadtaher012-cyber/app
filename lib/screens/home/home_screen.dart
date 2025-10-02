@@ -25,10 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   
   final List<Widget> _screens = [
-    HomeTab(),
-    KidsScreen(),
-    MapScreen(),
-    ProfileScreen(),
+    const HomeTab(),
+    const KidsScreen(),
+    const MapScreen(),
+    const ProfileScreen(),
   ];
 
   @override
@@ -49,19 +49,19 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedItemColor: AppTheme.textSecondary,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             label: localizationService.getText('home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.child_care),
+            icon: const Icon(Icons.child_care),
             label: localizationService.getText('Kids'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.map),
+            icon: const Icon(Icons.map),
             label: localizationService.getText('Map'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             label: localizationService.getText('Profile'),
           ),
         ],
@@ -76,7 +76,7 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localizationService = Provider.of<LocalizationService>(context);
-    final authService = Provider.of<AuthService>(context);
+    final authService = Provider.of<AuthService>(context, listen: false);
     
     return Scaffold(
       appBar: AppBar(
@@ -85,7 +85,7 @@ class HomeTab extends StatelessWidget {
         foregroundColor: Colors.white,
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               Get.snackbar(
                 'إشعارات',
@@ -95,22 +95,22 @@ class HomeTab extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
             onPressed: () async {
               await authService.signOut();
-              Get.offAll(() => LoginScreen());
+              Get.offAll(() => const LoginScreen());
             },
           ),
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             // Welcome Card
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.blue, Colors.blue.shade300],
@@ -120,9 +120,9 @@ class HomeTab extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.blue.withValues(alpha: 0.3),
+                    color: Colors.blue.withOpacity(0.3),
                     blurRadius: 10,
-                    offset: Offset(0, 5),
+                    offset: const Offset(0, 5),
                   ),
                 ],
               ),
@@ -131,24 +131,26 @@ class HomeTab extends StatelessWidget {
                 children: [
                   Text(
                     localizationService.getText('welcome'),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    authService.currentUser?.email ?? 'user@example.com',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white70,
+                  const SizedBox(height: 10),
+                  Consumer<AuthService>(
+                    builder: (context, authService, child) => Text(
+                      authService.currentUser?.email ?? 'user@example.com',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white70,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2,
@@ -160,21 +162,21 @@ class HomeTab extends StatelessWidget {
                     Icons.child_care,
                     localizationService.getText('Kids'),
                     AppTheme.primaryColor,
-                    () => Get.to(() => KidsScreen()),
+                    () => Get.to(() => const KidsScreen()),
                   ),
                   _buildServiceCard(
                     context,
                     Icons.map,
                     localizationService.getText('Map'),
                     AppTheme.successColor,
-                    () => Get.to(() => MapScreen()),
+                    () => Get.to(() => const MapScreen()),
                   ),
                   _buildServiceCard(
                     context,
                     Icons.track_changes,
                     'تتبع الحافلة',
                     AppTheme.primaryColor,
-                    () => Get.to(() => BusTrackingScreen()),
+                    () => Get.to(() => const BusTrackingScreen()),
                   ),
                   _buildServiceCard(
                     context,
@@ -192,21 +194,21 @@ class HomeTab extends StatelessWidget {
                     Icons.assessment,
                     'التقارير',
                     AppTheme.successColor,
-                    () => Get.to(() => ReportsScreen()),
+                    () => Get.to(() => const ReportsScreen()),
                   ),
                   _buildServiceCard(
                     context,
                     Icons.card_giftcard,
                     'نقاط الولاء',
                     AppTheme.warningColor,
-                    () => Get.to(() => LoyaltyScreen()),
+                    () => Get.to(() => const LoyaltyScreen()),
                   ),
                   _buildServiceCard(
                     context,
                     Icons.emergency,
                     'الطوارئ',
                     AppTheme.errorColor,
-                    () => Get.to(() => EmergencyScreen()),
+                    () => Get.to(() => const EmergencyScreen()),
                   ),
                   _buildServiceCard(
                     context,
@@ -234,7 +236,7 @@ class HomeTab extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(15),
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -242,12 +244,12 @@ class HomeTab extends StatelessWidget {
                 width: 60,
                 height: 60,
                 decoration: BoxDecoration(
-                  color: color.withValues(alpha: 0.1),
+                  color: color.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Icon(icon, size: 30, color: color),
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               Text(
                 title,
                 textAlign: TextAlign.center,
