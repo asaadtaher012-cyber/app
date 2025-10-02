@@ -23,12 +23,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final localizationService = Provider.of<LocalizationService>(context);
-    final authService = Provider.of<AuthService>(context);
+    final authService = Provider.of<AuthService>(context, listen: false);
 
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
             child: Column(
@@ -42,19 +42,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.blue.withValues(alpha: 0.3),
+                        color: Colors.blue.withOpacity(0.3),
                         blurRadius: 10,
-                        offset: Offset(0, 5),
+                        offset: const Offset(0, 5),
                       ),
                     ],
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.school,
                     size: 50,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Text(
                   localizationService.getText('Login'),
                   style: TextStyle(
@@ -62,19 +62,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: localizationService.getText('email'),
-                    prefixIcon: Icon(Icons.email),
+                    prefixIcon: const Icon(Icons.email),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.blue, width: 2),
+                      borderSide: const BorderSide(color: Colors.blue, width: 2),
                     ),
                   ),
                   validator: (value) {
@@ -87,13 +87,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextFormField(
                   controller: _passwordController,
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     labelText: localizationService.getText('password'),
-                    prefixIcon: Icon(Icons.lock),
+                    prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
                       onPressed: () {
@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.blue, width: 2),
+                      borderSide: const BorderSide(color: Colors.blue, width: 2),
                     ),
                   ),
                   validator: (value) {
@@ -128,45 +128,49 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ForgotPasswordScreen()),
+                          MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()),
                         );
                       },
                       child: Text(localizationService.getText('forget_passwords')),
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: authService.isLoading ? null : _login,
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                const SizedBox(height: 20),
+                Consumer<AuthService>(
+                  builder: (context, authService, child) => SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: authService.isLoading ? null : _login,
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
-                    ),
-                    child: authService.isLoading
-                        ? CircularProgressIndicator(color: Colors.white)
-                        : Text(localizationService.getText('Login')),
-                  ),
-                ),
-                SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: OutlinedButton.icon(
-                    onPressed: authService.isLoading ? null : _loginWithGoogle,
-                    icon: Icon(Icons.login),
-                    label: Text('تسجيل الدخول بـ Google'),
-                    style: OutlinedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
+                      child: authService.isLoading
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : Text(localizationService.getText('Login')),
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
+                Consumer<AuthService>(
+                  builder: (context, authService, child) => SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: OutlinedButton.icon(
+                      onPressed: authService.isLoading ? null : _loginWithGoogle,
+                      icon: const Icon(Icons.login),
+                      label: const Text('تسجيل الدخول بـ Google'),
+                      style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -175,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => RegisterScreen()),
+                          MaterialPageRoute(builder: (context) => const RegisterScreen()),
                         );
                       },
                       child: Text(localizationService.getText('Sign Up')),

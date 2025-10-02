@@ -25,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final localizationService = Provider.of<LocalizationService>(context);
-    final authService = Provider.of<AuthService>(context);
+    final authService = Provider.of<AuthService>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -35,13 +35,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Container(
                     width: 80,
                     height: 80,
@@ -50,38 +50,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.blue.withValues(alpha: 0.3),
+                          color: Colors.blue.withOpacity(0.3),
                           blurRadius: 10,
-                          offset: Offset(0, 5),
+                          offset: const Offset(0, 5),
                         ),
                       ],
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.person_add,
                       size: 40,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     'إنشاء حساب جديد',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   TextFormField(
                     controller: _nameController,
                     decoration: InputDecoration(
                       labelText: localizationService.getText('name'),
-                      prefixIcon: Icon(Icons.person),
+                      prefixIcon: const Icon(Icons.person),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.blue, width: 2),
+                        borderSide: const BorderSide(color: Colors.blue, width: 2),
                       ),
                     ),
                     validator: (value) {
@@ -91,19 +91,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: localizationService.getText('email'),
-                      prefixIcon: Icon(Icons.email),
+                      prefixIcon: const Icon(Icons.email),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.blue, width: 2),
+                        borderSide: const BorderSide(color: Colors.blue, width: 2),
                       ),
                     ),
                     validator: (value) {
@@ -116,19 +116,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _phoneController,
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       labelText: localizationService.getText('phone'),
-                      prefixIcon: Icon(Icons.phone),
+                      prefixIcon: const Icon(Icons.phone),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.blue, width: 2),
+                        borderSide: const BorderSide(color: Colors.blue, width: 2),
                       ),
                     ),
                     validator: (value) {
@@ -138,13 +138,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
                       labelText: localizationService.getText('password'),
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
                         icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
                         onPressed: () {
@@ -158,7 +158,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.blue, width: 2),
+                        borderSide: const BorderSide(color: Colors.blue, width: 2),
                       ),
                     ),
                     validator: (value) {
@@ -171,13 +171,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _confirmPasswordController,
                     obscureText: _obscureConfirmPassword,
                     decoration: InputDecoration(
                       labelText: localizationService.getText('confirm_password'),
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
                         icon: Icon(_obscureConfirmPassword ? Icons.visibility : Icons.visibility_off),
                         onPressed: () {
@@ -191,7 +191,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: Colors.blue, width: 2),
+                        borderSide: const BorderSide(color: Colors.blue, width: 2),
                       ),
                     ),
                     validator: (value) {
@@ -204,20 +204,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 30),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: authService.isLoading ? null : _register,
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                  const SizedBox(height: 30),
+                  Consumer<AuthService>(
+                    builder: (context, authService, child) => SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: authService.isLoading ? null : _register,
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
+                        child: authService.isLoading
+                            ? const CircularProgressIndicator(color: Colors.white)
+                            : Text(localizationService.getText('Sign Up')),
                       ),
-                      child: authService.isLoading
-                          ? CircularProgressIndicator(color: Colors.white)
-                          : Text(localizationService.getText('Sign Up')),
                     ),
                   ),
                 ],
