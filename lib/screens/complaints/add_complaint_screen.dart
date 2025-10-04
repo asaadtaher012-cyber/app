@@ -42,7 +42,7 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
 
     try {
       // TODO: Implement submit complaint logic
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
       
       Get.snackbar(
         'Success',
@@ -75,7 +75,7 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
         title: Text(localizationService.getText('new_complaint')),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(24),
+        padding: const EdgeInsets.all(24),
         child: Form(
           key: _formKey,
           child: Column(
@@ -84,19 +84,19 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
               // Category Selection
               Text(
                 localizationService.getText('subject'),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               DropdownButtonFormField<String>(
                 value: _selectedCategory,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 ),
                 items: _categories.map((String category) {
                   return DropdownMenuItem<String>(
@@ -108,7 +108,7 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
                   setState(() => _selectedCategory = newValue!);
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               
               // Subject Field
               CustomTextField(
@@ -122,7 +122,7 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               
               // Message Field
               CustomTextField(
@@ -137,7 +137,7 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               
               // Submit Button
               CustomButton(
@@ -152,4 +152,3 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
     );
   }
 }
-

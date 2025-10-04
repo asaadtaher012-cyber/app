@@ -167,7 +167,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('الطوارئ'),
+        title: const Text('الطوارئ'),
         backgroundColor: AppTheme.errorColor,
         foregroundColor: Colors.white,
       ),
@@ -222,7 +222,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: AppTheme.errorColor,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 32,
                         vertical: 16,
                       ),
@@ -241,7 +241,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                               ),
                             ),
                           )
-                        : Text(
+                        : const Text(
                             'إرسال تنبيه طوارئ',
                             style: TextStyle(
                               fontSize: 16,
@@ -268,7 +268,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
             
             ..._emergencyContacts.map((contact) {
               return Container(
-                margin: EdgeInsets.only(bottom: 12),
+                margin: const EdgeInsets.only(bottom: 12),
                 child: Card(
                   elevation: 2,
                   shape: RoundedRectangleBorder(
@@ -276,7 +276,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                   ),
                   child: ListTile(
                     leading: Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: contact['color'].withOpacity(0.1),
                         borderRadius: BorderRadius.circular(8),
@@ -289,14 +289,14 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                     ),
                     title: Text(
                       contact['name'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         color: AppTheme.textPrimary,
                       ),
                     ),
                     subtitle: Text(
                       contact['number'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: AppTheme.textSecondary,
                       ),
                     ),
@@ -366,8 +366,8 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
     Color color,
   ) {
     return Container(
-      margin: EdgeInsets.only(bottom: 12),
-      padding: EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppTheme.surfaceColor,
         borderRadius: BorderRadius.circular(8),
@@ -376,7 +376,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: color.withOpacity(0.1),
               borderRadius: BorderRadius.circular(8),
@@ -394,7 +394,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: AppTheme.textPrimary,
@@ -403,7 +403,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                 const SizedBox(height: 4),
                 Text(
                   description,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     color: AppTheme.textSecondary,
                   ),
