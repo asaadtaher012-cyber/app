@@ -42,7 +42,7 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
 
     try {
       // TODO: Implement submit complaint logic
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
       
       Get.snackbar(
         'Success',
@@ -152,4 +152,3 @@ class _AddComplaintScreenState extends State<AddComplaintScreen> {
     );
   }
 }
-
